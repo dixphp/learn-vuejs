@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nauka Vue.js</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <template id="add-item-template">
+        <div class="input-group">
+            <input @keyup.enter="addItem" v-model="newItem" placeholder="Dodaj element do listy" type="text" class="form-control">
+            <span class="input-group-btn">
+                <button @click="addItem" class="btn btn-default">Dodaj!</button>
+            </span>
+        </div>
+    </template>    
+    
+    <template id="item-template">
+        <li :class="{'removed': item.checked}">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" v-model="item.checked">{{item.text}}
+                </label>
+            </div>
+        </li>
+    </template>
+    
+    <template id="items-template">
+        <ul>
+            <item-component v-for="item in items" :item="item"></item-component>
+        </ul>
+    </template>
+    
+    <template id="change-title-template">
+        <div>
+            <em>Zmień nazwę listy zakupów</em>
+            <input type="text" v-bind:value="value" v-on:input="onInput">
+        </div>
+    </template>
+    
+    <div id="app" class="container">
+        <h2>{{title}}</h2>
+        
+        <add-item-component v-on:add="addItem" :items="items"></add-item-component>
+        
+        <items-component :items="items"></items-component>
+        
+        <div class="footer">
+            <hr>
+            <change-title-component v-model="title"></change-title-component>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/shop.js"></script>
+</body>
+</html>

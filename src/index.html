@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nauka Vue.js</title>
+    <link rel="stylesheet" href="css/style.css"s>
+</head>
+<body>
+    
+    <template id="hello">
+        <h1>{{msg}} {{user}}</h1>
+    </template>
+    
+    <template id="form">
+        <div>
+            <label for="name">Jak się nazywasz?</label>
+            <input type="text" id="name" v-bind:value="value" v-on:input="onInput">
+        </div>
+    </template>
+    
+    
+    <template id="greetings">
+        <div>
+            <form-component :user="user" v-model="user"></form-component>
+            <hello-component :user="user"></hello-component>
+        </div>
+    </template>
+    
+    <div id="app">
+        <greetings-component></greetings-component>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
